@@ -1,1 +1,40 @@
 ### UNDERSTANDING CONTAINERIZATION TECHNOLOGY USING DOCKERS ###
+
+1. CONTAINER: A container is a way to package application with all the necessary dependencies and configurations
+
+2. CONTAINER REPOSITORY: A special type of storage for containers eg Docker hub (a public container repository)for docker containers.
+
+* Before now, when developing applications, we had to install all dependencies on the server or OS for it to run on that our local. But with containers, we avoid that stress because the container gives us like "It's own isolated operating system layer, with Linux based image." So this way, we have the application packaged with the proper dependencies in the container. So this way, we use same docker commands.
+
+* You could have different version of the same application running on your local system without any conflict. Since the other runs in the containerized environment.
+
+* Containers help eliminate the need for environmental configuration that needs to be set on the server before an application can run. Except for Docker Runtime to be set onetime on the server.
+
+* NB: Docker is one of the most popular implementation of containers. Other implementations include container d, cri-o, etc.
+
+
+3. Technically, containers are layers of images, with mostly Linux base image (alpine.3.0) because it is small in size.
+
+4. Install docker following the guide from ubuntu: https://docs.docker.com/engine/install/ubuntu/
+	You can confirm the version installed by running:
+=> docker --version 		##Ref = img 1		
+
+5. To pull a docker image we use
+=> docker pull <image name>
+eg: => docker pull postgres 		## This will download the latest version if no version is specified. But if not, we can add the version we want to pull.
+
+=> docker pull <image name>:<version number>
+eg:  => docker pull postgres:15.8
+
+6. To see all the available docker images
+=> docker images
+
+7. To run a docker image we use the "docker run <image name>:<version> eg
+=> docker run -d -e POSTGRES_PASSWORD=password postgres 		## SOmetimes we might need to specify some extra stuffs.
+
+8. To get help for docker or docker commands, we use
+=> docker --help		## for docker commands info
+=> docker <command> --help 	## for specific commands help
+
+
+
