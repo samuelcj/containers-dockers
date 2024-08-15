@@ -30,11 +30,20 @@ eg:  => docker pull postgres:15.8
 => docker images
 
 7. To run a docker image we use the "docker run <image name>:<version> eg
-=> docker run -d -e POSTGRES_PASSWORD=password postgres 		## SOmetimes we might need to specify some extra stuffs.
+=> docker run -d -e POSTGRES_PASSWORD=password postgres 		## Sometimes we might need to specify some extra stuffs.
 
 8. To get help for docker or docker commands, we use
 => docker --help		## for docker commands info
 => docker <command> --help 	## for specific commands help
+
+9. To see all containers we run
+=> docker ps 		### for running containers
+=> docker ps -a 	### For both running, stoped and failed containers
+
+*** NOTE: 
+Image is the actual package that consist of the application, configuration, dependencies, start script, etc. The image is more like the artifact that is moved from the remote repository (eg docker hub).
+
+Container is when the image is pulled to the local machine and started. So container is a running image on a local server. This create the container environment.
 
 
 
