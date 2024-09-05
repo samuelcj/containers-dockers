@@ -45,6 +45,33 @@ Image is the actual package that consist of the application, configuration, depe
 
 Container is when the image is pulled to the local machine and started. So container is a running image on a local server. This create the container environment.
 
+10. OS vs VirtualBox vs Docker.
 
+i. OS has two major layer (a) The OS Kernel - This communicate with the hardware and application. like the middle man to aid communication. (b) The application layer, where applications are. They run on the kernel layer.
+
+ii. Docker virtualizes the application layer of an Operating system. And it uses the kernel on the host OS, as it does not have it own kernel.
+
+iii. Virtual machine or Virtual box virtualizes both the Application and OS kernel of an Operating system. So it uses the Host hardware to boot and not the host OS.
+
+11. Docker Architectur: When we install docker, we actually install a docker engine which consist of 3 major components. 
+i. Docker Server: For pulling images and managing images and containers
+ii. Docker API: For interacting with the docker server
+iii. Docker CLI: to execute docker commands against the server.
+
+12. CONTAINER vs IMAGE
+## Container: Is a part of the containder runtime. It is basically the running environment for an IMAGE
+## Image: This is the packaged non-running container. Just like an artifact.
+
+13. DOCKER BASIC COMMANDS
+a. docker pull <image name>	=> to download an image from docker hub
+b. docker pull <image name>:<version number>	=> to download a particular image version from docker hub
+c. docker images	=> to show the list of all images 
+d. docker run <image name> 	=> To run an image as a container in an attached mode. If image don't exist, it will pull and run it.
+e. docker run -d <image name> 	=> To run the container in a detached mode (more like background)
+f. docker stop <container id>	=> to stop a running container
+g. docker start <container id>	=> to start a stopped container
+h. docker ps 		=> to see all running containers
+i. docker ps -a 	=> to see all running and stopped containers
+j. 
 
 
