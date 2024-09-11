@@ -72,6 +72,31 @@ f. docker stop <container id>	=> to stop a running container
 g. docker start <container id>	=> to start a stopped container
 h. docker ps 		=> to see all running containers
 i. docker ps -a 	=> to see all running and stopped containers
-j. 
+j. docker run -p<host port>:<container port> <image name>  => to bind a port on the host to that of a container
+# eg:   docker run -d -p6001:6746 postgress
+
+k. docker logs <container id> 	=> to get the logs of a container
+l. docker logs <container name>	=> to get the logs of the container
+
+#eg: docker logs objective_joliot
+
+m. docker run --name <container name> <image name>	=> This is used to give the container a specific name rather than a random name
+
+n. docker rm <container id>  	=>  To delete a container
+
+o. docker rmi <image id> 	=> To delete an image.
+
+p. docker exec -it <container id> /bin/bash	=> To enter into the docker InTeractive environment and carry out some tasks or functions.
+
+######## when done with the docker env you use "exit" to return to your normal terminal.
+q. docker exec -it <container name> /bin/bash 	=> This also opens up the docker environment
+
+
+
+
+
+
+14. DOCKER TROUBLESHOOTING COMMANDS
+
 
 
