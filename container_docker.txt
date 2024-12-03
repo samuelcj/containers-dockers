@@ -53,13 +53,13 @@ ii. Docker virtualizes the application layer of an Operating system. And it uses
 
 iii. Virtual machine or Virtual box virtualizes both the Application and OS kernel of an Operating system. So it uses the Host hardware to boot and not the host OS.
 
-11. Docker Architectur: When we install docker, we actually install a docker engine which consist of 3 major components. 
+11. Docker Architecture: When we install docker, we actually install a docker engine which consist of 3 major components. 
 i. Docker Server: For pulling images and managing images and containers
 ii. Docker API: For interacting with the docker server
 iii. Docker CLI: to execute docker commands against the server.
 
 12. CONTAINER vs IMAGE
-## Container: Is a part of the containder runtime. It is basically the running environment for an IMAGE
+## Container: Is a part of the container runtime. It is basically the running environment for an IMAGE
 ## Image: This is the packaged non-running container. Just like an artifact.
 
 13. DOCKER BASIC COMMANDS
@@ -86,10 +86,14 @@ n. docker rm <container id>  	=>  To delete a container
 
 o. docker rmi <image id> 	=> To delete an image.
 
-p. docker exec -it <container id> /bin/bash	=> To enter into the docker InTeractive environment and carry out some tasks or functions.
+p. docker exec -it <container id> /bin/bash	=> To enter into the docker Interactive environment and carry out some tasks or functions.
 
 ######## when done with the docker env you use "exit" to return to your normal terminal.
 q. docker exec -it <container name> /bin/bash 	=> This also opens up the docker environment
+
+r. docker start <container name>    => to start a container if you gave it a name
+
+
 
 
 
