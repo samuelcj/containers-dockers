@@ -95,12 +95,8 @@ r. docker start <container name>    => to start a container if you gave it a nam
 
 
 
-
-
-
-
-
-14. DOCKER TROUBLESHOOTING COMMANDS
+14. THE DOCKER PROJECT
+A demo of a Java Script application (A Node JS Backend) connected tot a Mongo-DB databased container with a Mongo-DB UI called mongoExpress.
 
 
 
