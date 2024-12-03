@@ -93,6 +93,12 @@ q. docker exec -it <container name> /bin/bash 	=> This also opens up the docker 
 
 r. docker start <container name>    => to start a container if you gave it a name
 
+s. docker network ls 	=> to see the default docker networks
+
+t. docker network create <network name>  	=> to create a docker network.
+
+u. docker run --net <network name>	=> to run a container in the specified network
+
 
 ####################
 THE DOCKER PROJECT
@@ -102,6 +108,7 @@ A demo of a Java Script application (A Node JS Backend) connected tot a Mongo-DB
 # 	node server.js
 
 I had to run the following commands to fix the unavailable dependencies and get it well set up.
+#   npm install 
 #	npm install express 		(as it was missen)
 #	npm audit fix				(to fix all issues)
 # 	npm fund					(for pakages looking for fundings)
@@ -112,6 +119,28 @@ Now running # node server.js again, 	The application is running on port 3000.
 # docker pull mongo
 # docker pull mongo-express
 
+3. DOCKER NETWORK
+Docker creates it's isolated docker network, where the containers are running in. Hence if i deploy two containers in the same docker network (eg: mongo and mongo-express), They can talk to each other without localhost or port number.
+Then external application like the node js application can connect to everything inside the docker network using localhost and the port number.
 
+So we run the two containers for mongodb and mongo-express in the network following the code below:
+# docker network create mongo-network 
+# docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network mongo    
+# docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=password --net mongo-network --name mongo-express -e ME_CONFIG_MONGODB_SERVER=mongodb mongo-express   
 
+Or in this format:
+############
+docker run -d \
+> -p 8081:8081 \
+> -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+> -e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
+> --net mongo-network \
+> --name mongo-express \
+> -e ME_CONFIG_MONGODB_SERVER=mongodb \
+> mongo-express
+############
 
+4. Connect to the Mongo Express UI and create the database called user-account.
+### To connect, we run:  < localhost:8081 >  on our browser.
+
+5. Connect our NodeJS application to the MongoDB database. 

@@ -1,123 +1,128 @@
+<!DOCTYPE html>
 <html lang="en">
-<style>
-    .container {
-        margin: 40px auto;
-        width: 80%;
-    }
-    .button {
-        width: 160px;
-        height: 45px;
-        border-radius: 6px;
-        font-size: 15px;
-        margin-top: 20px;
-    }
-    img {
-        width: 328px;
-        height: 287px;
-        display: block;
-        margin-bottom: 20px;
-    }
-    hr {
-        width: 400px;
-        margin-left: 0;
-    }
-    h3 {
-        display: inline-block;
-    }
-    #container {
-        display: none;
-    }
-    #container-edit {
-        display: none;
-    }
-    #container-edit input {
-        height: 32px;
-    }
-    #container-edit hr {
-        margin: 25px 0;
-    }
-    #container-edit input {
-        width: 195px;
-        font-size: 15px;
-    }
-</style>
-<script>
-    (async function init() {
-        const response = await fetch('http://localhost:3000/get-profile');
-        console.log("response", response);
-        const user = await response.json();
-        console.log(JSON.stringify(user));
-
-        document.getElementById('name').textContent = user.name ? user.name : 'Samuel Joseph';
-        document.getElementById('email').textContent = user.email ? user.email : 'samuel.joseph@email.com';
-        document.getElementById('interests').textContent = user.interests ? user.interests : 'coding';
-
-        const cont = document.getElementById('container');
-        cont.style.display = 'block';
-    })();
-
-    async function handleUpdateProfileRequest() {
-        const contEdit = document.getElementById('container-edit');
-        const cont = document.getElementById('container');
-
-        const payload = {
-            name: document.getElementById('input-name').value, 
-            email: document.getElementById('input-email').value, 
-            interests: document.getElementById('input-interests').value
-        };
-        
-        const response = await fetch('http://localhost:3000/update-profile', {
-            method: "POST",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
-        const jsonResponse = await response.json();
-
-        document.getElementById('name').textContent = jsonResponse.name;
-        document.getElementById('email').textContent = jsonResponse.email;
-        document.getElementById('interests').textContent = jsonResponse.interests;
-
-        cont.style.display = 'block';
-        contEdit.style.display = 'none';
-    }
-
-    function updateProfile() {
-        const contEdit = document.getElementById('container-edit');
-        const cont = document.getElementById('container');
-
-        document.getElementById('input-name').value = document.getElementById('name').textContent;
-        document.getElementById('input-email').value = document.getElementById('email').textContent;
-        document.getElementById('input-interests').value = document.getElementById('interests').textContent;
-
-        cont.style.display = 'none';
-        contEdit.style.display = 'block';
-    }
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            width: 100%;
+            height: 45px;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 2px solid #007bff;
+        }
+        hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
+        input {
+            width: calc(100% - 20px);
+            height: 40px;
+            font-size: 16px;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
 <body>
-    <div class='container' id='container'>
-        <h1>User profile</h1>
-        <img src='profile-picture' alt="user-profile">
-        <span>Name: </span><h3 id='name'>Samuel Joseph</h3>
-        <hr />
-        <span>Email: </span><h3 id='email'>samuel.joseph@email.com</h3>
-        <hr />
-        <span>Interests: </span><h3 id='interests'>coding</h3>
-        <hr />
-        <button class='button' onclick="updateProfile()">Edit Profile</button>
+    <div class="container" id="view-container">
+        <h1>User Profile</h1>
+        <img src="https://via.placeholder.com/200" alt="User Profile Picture">
+        <p><strong>Name:</strong> <span id="view-name">Samuel Joseph</span></p>
+        <p><strong>Email:</strong> <span id="view-email">samuel.joseph@email.com</span></p>
+        <p><strong>Interests:</strong> <span id="view-interests">Coding, Reading</span></p>
+        <button class="button" onclick="showEditForm()">Edit Profile</button>
     </div>
-    <div class='container' id='container-edit'>
-        <h1>User profile</h1>
-        <img src='profile-picture' alt="user-profile">
-        <span>Name: </span><label for='input-name'></label><input type="text" id='input-name' value='Samuel Joseph' />
-        <hr />
-        <span>Email: </span><label for='input-email'></label><input type="email" id='input-email' value='samuel.joseph@email.com' />
-        <hr />
-        <span>Interests: </span><label for='input-interests'></label><input type="text" id='input-interests' value='coding' />
-        <hr />
-        <button class='button' onclick="handleUpdateProfileRequest()">Update Profile</button>
+
+    <div class="container hidden" id="edit-container">
+        <h1>Edit Profile</h1>
+        <input type="text" id="edit-name" placeholder="Name">
+        <input type="email" id="edit-email" placeholder="Email">
+        <input type="text" id="edit-interests" placeholder="Interests">
+        <button class="button" onclick="saveProfile()">Save Profile</button>
     </div>
+
+    <script>
+        // Hardcoded user profile data
+        const user = {
+            name: "Samuel Joseph",
+            email: "samuel.joseph@email.com",
+            interests: "Coding, Reading"
+        };
+
+        // Populate the view container
+        function populateView() {
+            document.getElementById("view-name").textContent = user.name;
+            document.getElementById("view-email").textContent = user.email;
+            document.getElementById("view-interests").textContent = user.interests;
+        }
+
+        // Show the edit form
+        function showEditForm() {
+            document.getElementById("view-container").classList.add("hidden");
+            document.getElementById("edit-container").classList.remove("hidden");
+
+            // Pre-fill the form with current values
+            document.getElementById("edit-name").value = user.name;
+            document.getElementById("edit-email").value = user.email;
+            document.getElementById("edit-interests").value = user.interests;
+        }
+
+        // Save profile changes
+        function saveProfile() {
+            // Update user object
+            user.name = document.getElementById("edit-name").value;
+            user.email = document.getElementById("edit-email").value;
+            user.interests = document.getElementById("edit-interests").value;
+
+            // Update the view
+            populateView();
+
+            // Switch back to view mode
+            document.getElementById("edit-container").classList.add("hidden");
+            document.getElementById("view-container").classList.remove("hidden");
+        }
+
+        // Initial population of view container
+        populateView();
+    </script>
 </body>
 </html>
