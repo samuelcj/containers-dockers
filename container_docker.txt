@@ -94,9 +94,24 @@ q. docker exec -it <container name> /bin/bash 	=> This also opens up the docker 
 r. docker start <container name>    => to start a container if you gave it a name
 
 
-
-14. THE DOCKER PROJECT
+####################
+THE DOCKER PROJECT
 A demo of a Java Script application (A Node JS Backend) connected tot a Mongo-DB databased container with a Mongo-DB UI called mongoExpress.
+
+1. To start the application, I navigated to the application server.js folder and ran the command:
+# 	node server.js
+
+I had to run the following commands to fix the unavailable dependencies and get it well set up.
+#	npm install express 		(as it was missen)
+#	npm audit fix				(to fix all issues)
+# 	npm fund					(for pakages looking for fundings)
+
+Now running # node server.js again, 	The application is running on port 3000.
+
+2. Go ahead and pull the mongoDb and mongo express images from docker hub.
+# docker pull mongo
+# docker pull mongo-express
+
 
 
 
