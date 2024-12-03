@@ -99,6 +99,9 @@ t. docker network create <network name>  	=> to create a docker network.
 
 u. docker run --net <network name>	=> to run a container in the specified network
 
+v. docker-compose -f <docker compose file>	up		=> to deploy the containers in a docker compose .yaml file
+
+w. docker-compose -f <docker compose file>	down		=> to stop the containers in a docker compose .yaml file
 
 ####################
 THE DOCKER PROJECT
@@ -140,7 +143,31 @@ docker run -d \
 > mongo-express
 ############
 
-4. Connect to the Mongo Express UI and create the database called user-account.
+4. Connect to the Mongo Express UI.
 ### To connect, we run:  < localhost:8081 >  on our browser.
-
+NB: Your password could be the default password: pass
 5. Connect our NodeJS application to the MongoDB database. 
+This is done by using the url for the mongodb: localhost:27017 in the nodeJS server.js file.
+
+5. DOCKER COMPOSE:
+Used to run multiple docker container at once and repeaatedly, instead of mannually often. it follows this structure:
+
+version: <version number>		# The version of the docker compose file
+Services						# Under this is where we list all the containers
+	<container 1 name>
+		image: <image name>
+		ports:
+		  - <host>:<container>
+		environment:
+		  - <specify all the multiple environment varriables
+
+.
+.
+.
+
+NB: Docker compose takes care of creating a container network for all the containers in the docker compose file.
+
+To execute the docker compose file, we use:
+#	docker-compose -f <docker compose file>	up		## the -f flag represents file
+eg:  ## docker-compose -f docker-compose.yaml up
+
