@@ -188,3 +188,11 @@ Note, all the below will apply in the container.
 ######
 # docker build -t <image name>:<tag> <dockerfile location>
 eg:  =>  docker build -t my-image:1.0 ./docker-project/			=> NB: If you don't give a tag, it will have latest as it tag.
+
+7. DOCKER REGISTRY
+Docker registories are used to store docker images. 
+Using AWS Elastic Container Registry (Amazon ECR) for our private repository.
+
+a. Login to AWS and locate the Amazon ECR Services
+b. Create a private repository. For mine I called it app-image.
+c. Configure AWS CLI for the account on your local machine. So you can easily login and push the image to the remote private repository.
