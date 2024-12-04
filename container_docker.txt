@@ -103,6 +103,8 @@ v. docker-compose -f <docker compose file>	up		=> to deploy the containers in a 
 
 w. docker-compose -f <docker compose file>	down		=> to stop the containers in a docker compose .yaml file
 
+x. docker build -t <image name> <dockerfile location>
+
 ####################
 THE DOCKER PROJECT
 A demo of a Java Script application (A Node JS Backend) connected tot a Mongo-DB databased container with a Mongo-DB UI called mongoExpress.
@@ -171,3 +173,18 @@ To execute the docker compose file, we use:
 #	docker-compose -f <docker compose file>	up		## the -f flag represents file
 eg:  ## docker-compose -f docker-compose.yaml up
 
+
+6. DOCKERFILE
+This serves as a blueprint for building images. It helps us copy our application codes and artifact in a way that it becomes packaged in an image.
+Docker files are saved as dockerfile. This is a text file with no extension.
+Note, all the below will apply in the container.
+#a. FROM: It starts with the base image we are building our image from. For this project, we built on node image i.e FROM node:13-alpine
+#b. ENV: Then we set the environment varriables using ENV then the environment key and value
+#c. RUN: Used to run Linux commands that will happen inside the container and not on the host.
+#d. COPY: Used to execute on Host for Host to Container. eg COPY <host file/directory> <container location>  => COPY ./fileA /home/docker/file
+#e. CMD: This is used to execute an entry point commands. eg: CMD ["node", "server.js"]. It will start the application withe the "node server.js" command.
+#f. WORKDIR: Use to set the working directory from which to run all commands inside the container.
+
+######
+# docker build -t <image name>:<tag> <dockerfile location>
+eg:  =>  docker build -t my-image:1.0 ./docker-project/			=> NB: If you don't give a tag, it will have latest as it tag.
