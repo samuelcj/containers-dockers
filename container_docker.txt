@@ -196,3 +196,15 @@ Using AWS Elastic Container Registry (Amazon ECR) for our private repository.
 a. Login to AWS and locate the Amazon ECR Services
 b. Create a private repository. For mine I called it app-image.
 c. Configure AWS CLI for the account on your local machine. So you can easily login and push the image to the remote private repository.
+d. follow the push command instructions to successfully push and tag your image to the ECR.
+
+Here are samples of my commands. Note, I have different AWS profiles configured on my CLI.
+
+# aws ecr get-login-password --region us-east-1 --profile <profile name> | docker login --username AWS --password-stdin <account id>.dkr.ecr.us-east-1.amazonaws.com
+
+# docker tag app-image:1.0 <account id>.dkr.ecr.us-east-1.amazonaws.com/app-image:1.0
+
+# docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/app-image:1.0
+
+
+
