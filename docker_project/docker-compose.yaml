@@ -11,6 +11,8 @@ services:
     environment:
      - MONGO_INITDB_ROOT_USERNAME=admin
      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+     - mongo-data:/data/db      #NB /data/db is the default data folder for mogodb container. Other DBs have their different default. But can be found online.
   mongo-express:
     image: mongo-express
     restart: always
@@ -20,3 +22,7 @@ services:
      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
      - ME_CONFIG_MONGODB_SERVER=mongodb
+
+volumes:
+  mongo-data:               #The Named volume name on the local reference
+    driver: local           # Additional info so that docker creates the volum,e on the local host

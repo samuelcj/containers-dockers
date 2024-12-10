@@ -216,5 +216,30 @@ iii. All other containers that the Application needs to run successfully eg: Mon
 After the docker compose file have been created, you run it using the command:
 # docker-compose -f <docker compose file> up
 
+9. DOCKER VOLUMES
+They are used for Data persistence in a container. Container default data storage are always in "/var/lib/<container name>/data"
+So to make docker volumes work, we mount the physical host file system (/home/mount/data) into the virtual file system of the docker eg /var/lib/mongodb/data.
+So when the container writes to the file system, it automatically gets replicated in the host file system and vice-versa.
+
+METHODS OF CREATING DOCKER VOLUMES:
+1. HOST VOLUME: Using Docker run command with the flag "-v" and you decide where on the host file system the reference is made;
+#  =>	-v <host directory>:<remote directory> 
+## =>	-v /home/mount/data:/var/lib/mongodb/data
+
+2. ANONYMOUS VOLUMES: You only reference the volume directory on the container and a random directory is created on the host for every container automatically.
+# =>	-v <container directory>
+## => 	-v /var/lib/mongodb/data
+
+3. NAMED VOLUMES: You just reference the volume folder on the host with a name and you map it to that of the container
+#  =>	-v <name>:<container directory>
+## =>	-v mongoDB:/var/lib/mongodb/data
+
+NB: The Named volume is mostly used in practice and production even in docker compose files.
+
+## DOCKER VOLUME LOCATIONS
+Windows => C:\ProgramData\docker\volumes
+Linux/Ubuntu => /var/lib/docker/volumes
+Mac => /var/lib/docker/volumes
+
 
 
