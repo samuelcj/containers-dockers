@@ -105,6 +105,12 @@ w. docker-compose -f <docker compose file>	down		=> to stop the containers in a 
 
 x. docker build -t <image name> <dockerfile location>
 
+y. docker volume ls			=> To list all your docker volumes:
+
+z. docker inspect <volume name>		=> To show more info about a particular named volume
+
+aa. docker volume create --name <volume name>		=> to create docker named volumes
+
 ####################
 THE DOCKER PROJECT
 A demo of a Java Script application (A Node JS Backend) connected tot a Mongo-DB databased container with a Mongo-DB UI called mongoExpress.
@@ -222,6 +228,9 @@ So to make docker volumes work, we mount the physical host file system (/home/mo
 So when the container writes to the file system, it automatically gets replicated in the host file system and vice-versa.
 
 METHODS OF CREATING DOCKER VOLUMES:
+=> docker volume create --name <volume name>		# NB: This is for creating a named volume.
+
+REFERENCING DATA VOLUMES
 1. HOST VOLUME: Using Docker run command with the flag "-v" and you decide where on the host file system the reference is made;
 #  =>	-v <host directory>:<remote directory> 
 ## =>	-v /home/mount/data:/var/lib/mongodb/data
@@ -241,5 +250,42 @@ Windows => C:\ProgramData\docker\volumes
 Linux/Ubuntu => /var/lib/docker/volumes
 Mac => /var/lib/docker/volumes
 
+## To list all your docker volumes:
+=> docker volume ls
+
+## To show more info about a particular named volume:
+=> docker inspect <volume name>			## example below
+
+=>	docker inspect docker_project_mongo-data
+[
+    {
+        "CreatedAt": "2024-12-10T18:28:35+01:00",
+        "Driver": "local",
+        "Labels": {
+            "com.docker.compose.project": "docker_project",
+            "com.docker.compose.version": "1.29.2",
+            "com.docker.compose.volume": "mongo-data"
+        },
+        "Mountpoint": "/var/lib/docker/volumes/docker_project_mongo-data/_data",
+        "Name": "docker_project_mongo-data",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+
+
+10. RUNNING NEXUS AS A DOCKER CONTAINER
+
+Unlike initially where we ran nexus in our server by takingmultiple steps. This time, we just use the Nexus Image and easily run nexus as a container.
+Below are the following steps.
+i. Locate the official image from sonartype to get the container running
+
+ii. For persistent data sake, we would need to create a named volume for the nexus container.
+# =>  docker volume create --name nexus-data
+
+iii. Start the nexux container with the specified volume.
+# => docker run -d -p 8081:8081 --name nexus -v nexus-data:/sonatype-work sonatype/nexus
+
+And we are good to go.
 
 
