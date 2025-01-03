@@ -89,7 +89,9 @@ o. docker rmi <image id> 	=> To delete an image.
 p. docker exec -it <container id> /bin/bash	=> To enter into the docker Interactive environment and carry out some tasks or functions.
 
 ######## when done with the docker env you use "exit" to return to your normal terminal.
-q. docker exec -it <container name> /bin/bash 	=> This also opens up the docker environment
+q. docker exec -it <container name> /bin/bash 	=> This also opens up the docker environment. with the container user
+
+	docker exec -u 0 -it <container name> /bin/bash   => This also opens up the docker environment. with the ROOT user
 
 r. docker start <container name>    => to start a container if you gave it a name
 
